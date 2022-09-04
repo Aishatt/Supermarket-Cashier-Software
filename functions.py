@@ -27,21 +27,24 @@ def get_price(product,quantity):
         'orange':8,
     }
     subtotal= int(price_Data[product] * quantity)
-    print (product +':$' + str(price_Data[product])+ 'x' + str(quantity) + ' = ' + str(subtotal))
+    print (product +':$' + str(price_Data[product])+ 'x' + str(quantity) + ' = '+'$' + str(subtotal))
     return subtotal
 get_price('milk',3)
 
-def discount(subtotal):
-    amt= str(input("enter membership"))
+def discount():
+    amount= get_price('milk',3)
+    member= str(input("enter membership : "))
     #check condition
-    if (amt== 'gold') :
-        d_price= subtotal*0.05
-    elif(amt=='silver'):
-        d_price= subtotal*0.12
-    elif(amt=='silver'):
-        d_price= subtotal*0.20
+    if (member== 'gold') :
+        d_price=int(amount*0.1) 
+    elif(member=='silver'):
+        d_price= int(amount*0.12) 
+    elif(member=='bronze'):
+        d_price= int(amount*0.20) 
     else:
-        d_price= subtotal
+        d_price= amount
         print('not a member')
+    print("Amount :"+' $', amount)  
+    print("Net pay :"+' $',d_price)  
     return d_price
-discount()        
+discount()
