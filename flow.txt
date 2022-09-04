@@ -1,0 +1,8 @@
+supermarket cashier software
+1. Accept product details -Name and quantity
+2. More products bought? Y/N 
+if yes loop 
+if no -- continue
+3. Membership type
+           Gold/Silver/Bronze --20%off/10%off/5%off respectively
+4. Print Final Discounted bill           
