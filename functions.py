@@ -15,7 +15,7 @@ def accept_product():
             print("please select correct option")
            
     return buyingData 
-accept_product() 
+ 
 
 #Function to calculate products
 #price_data contains product value and its price as key
@@ -29,22 +29,41 @@ def get_price(product,quantity):
     subtotal= int(price_Data[product] * quantity)
     print (product +':$' + str(price_Data[product])+ 'x' + str(quantity) + ' = '+'$' + str(subtotal))
     return subtotal
-get_price('milk',3)
 
-def discount():
-    amount= get_price('milk',3)
-    member= str(input("enter membership : "))
-    #check condition
-    if (member== 'gold') :
-        d_price=int(amount*0.1) 
-    elif(member=='silver'):
-        d_price= int(amount*0.12) 
-    elif(member=='bronze'):
-        d_price= int(amount*0.20) 
+
+def discounts(billAmount,membership):
+    discount=0
+    #check conditionq
+    if billAmount >= 25:
+        if (membership == 'gold') :
+            billAmount=int(billAmount*0.80)
+            discount=20 
+        elif(membership =='silver'):
+            billAmount=int(billAmount*0.90)
+            discount=10  
+        elif(membership =='bronze'):
+           billAmount=int(billAmount*0.95)
+           discount=5
+        print(str(discount)+'% off for '+ membership +" "+"membership on total amount: $"
+        + str(billAmount))
     else:
-        d_price= amount
-        print('not a member')
-    print("Amount :"+' $', amount)  
-    print("Net pay :"+' $',d_price)  
-    return d_price
-discount()
+        print('No discount on amount less than $25')
+    
+    return billAmount
+
+
+def makeBill(buyingData,membership):
+
+    billAmount=0
+    #for purchased goods n quantity in our dictionary
+    for key,value in buyingData.items():
+        #get price and save it in billamount
+        billAmount+=get_price(key,value)
+        #get discount and save it in billamount
+        billAmount= discounts(billAmount,membership)
+        print('the discounted amount is : $'+ str(billAmount))
+
+#function call
+buyingData=accept_product()
+membership=input('Enter customer membership:')       
+makeBill(buyingData,membership)
